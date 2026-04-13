@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>QR in Space</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- QR lib -->
+  <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
+
+  <!-- Material Icons -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #0b0b0f;
+      --card: #111;
+      --text: #fff;
+      --muted: #aaa;
+      --accent: #0468fe;
+      --border: #222;
+    }
+
+    .light {
+      --bg: #f7f7f7;
+      --card: #fff;
+      --text: #111;
+      --muted: #555;
+      --border: #ddd;
+    }
+
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      transition: 0.2s ease;
+    }
+
+    .container {
+      max-width: 700px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .brand {
+      color: var(--accent);
+      font-size: 14px;
+    }
+
+    .toggle {
+      cursor: pointer;
+      padding: 8px;
+      border-radius: 10px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: 0.2s ease;
+    }
+
+    .toggle:hover {
+      border-color: var(--accent);
+    }
+
+    .material-icons {
+      font-size: 20px;
+    }
+
+    h1 {
+      font-size: 28px;
+      margin: 0;
+    }
+
+    .tagline {
+      color: var(--muted);
+      font-size: 14px;
+      margin: 5px 0 20px;
+    }
+
+    .highlight {
+      color: var(--accent);
+      font-weight: 500;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 18px;
+      margin-top: 20px;
+    }
+
+    input {
+      width: 100%;
+      padding: 12px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      outline: none;
+      font-size: 14px;
+      margin-bottom: 15px;
+      background: transparent;
+      color: var(--text);
+      box-sizing: border-box; /* FIX */
+    }
+
+    input:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 2px rgba(4, 104, 254, 0.2);
+    }
+
+    .buttons {
+      display: flex;
+      gap: 10px;
+    }
+
+    button {
+      background: var(--accent);
+      color: white;
+      border: none;
+      padding: 10px 16px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    button:hover {
+      opacity: 0.9;
+    }
+
+    #qrcode {
+      margin-top: 20px;
+    }
+
+    canvas {
+      border-radius: 12px;
+      background: white;
+      padding: 10px;
+    }
+
+    .note {
+      margin-top: 15px;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .footer {
+      margin-top: 30px;
+      font-size: 12px;
+      color: var(--muted);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+
+    <div class="topbar">
+      <div class="brand">Newhouse</div>
+
+      <div class="toggle" onclick="toggleTheme()">
+        <span class="material-icons" id="themeIcon">dark_mode</span>
+      </div>
+    </div>
+
+    <h1>QR in Space</h1>
+    <div class="tagline">
+      Generate QR codes instantly, <span class="highlight">with no ads.</span>
+    </div>
+
+    <div class="card">
+      <input id="text" placeholder="Enter URL or text...">
+
+      <div class="buttons">
+        <button onclick="generateQR()">Generate</button>
+        <button onclick="downloadQR()">Download</button>
+      </div>
+
+      <div id="qrcode"></div
+    </div>
+
+    <div class="footer">
+      © Newhouse 2026.<br>Made in Thailand
+    </div>
+
+  </div>
+
+  <script>
+    let currentCanvas = null;
+
+    function generateQR() {
+      const text = document.getElementById("text").value.trim();
+      const container = document.getElementById("qrcode");
+      container.innerHTML = "";
+
+      if (!text) return;
+
+      QRCode.toCanvas(text, { width: 256 }, function (err, canvas) {
+        if (err) console.error(err);
+        container.appendChild(canvas);
+        currentCanvas = canvas;
+      });
+    }
+
+    function downloadQR() {
+      if (!currentCanvas) return;
+
+      const link = document.createElement("a");
+      link.download = "qr.png";
+      link.href = currentCanvas.toDataURL();
+      link.click();
+    }
+
+    function toggleTheme() {
+      document.body.classList.toggle("light");
+
+      const icon = document.getElementById("themeIcon");
+      if (document.body.classList.contains("light")) {
+        icon.textContent = "light_mode";
+      } else {
+        icon.textContent = "dark_mode";
+      }
+    }
+  </script>
+
+</body>
+</html>
