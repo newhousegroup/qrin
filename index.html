@@ -109,7 +109,7 @@
       margin-bottom: 15px;
       background: transparent;
       color: var(--text);
-      box-sizing: border-box; /* FIX */
+      box-sizing: border-box;
     }
 
     input:focus {
@@ -144,12 +144,6 @@
       border-radius: 12px;
       background: white;
       padding: 10px;
-    }
-
-    .note {
-      margin-top: 15px;
-      font-size: 13px;
-      color: var(--muted);
     }
 
     .footer {
@@ -196,12 +190,32 @@
   <script>
     let currentCanvas = null;
 
+    const commonTLDs = [
+      "com","org","net","io","app","dev","co","gov","edu","th"
+    ];
+
+    function normalizeInput(text) {
+      if (/^https?:\/\//i.test(text)) return text;
+
+      const parts = text.split(".");
+      const tld = parts[parts.length - 1].toLowerCase();
+
+      if (commonTLDs.includes(tld) && !text.includes(" ")) {
+        return "https://" + text;
+      }
+
+      return text;
+    }
+
     function generateQR() {
-      const text = document.getElementById("text").value.trim();
+      let text = document.getElementById("text").value.trim();
       const container = document.getElementById("qrcode");
       container.innerHTML = "";
 
       if (!text) return;
+
+      text = normalizeInput(text);
+      document.getElementById("text").value = text;
 
       QRCode.toCanvas(text, { width: 256 }, function (err, canvas) {
         if (err) console.error(err);
