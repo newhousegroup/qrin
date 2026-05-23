@@ -2,14 +2,17 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>QR in Space</title>
+  <title>QRin.space</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- QR lib -->
+  <!--qr maker-->
   <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
 
-  <!-- Material Icons -->
+  <!--fonts,icons-->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=SUSE:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 
   <style>
     :root {
@@ -31,7 +34,9 @@
 
     body {
       margin: 0;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-family: "SUSE", sans-serif;
+      font-optical-sizing: auto;
+      font-style: normal;
       background: var(--bg);
       color: var(--text);
       transition: 0.2s ease;
@@ -167,16 +172,16 @@
   <div class="container">
 
     <div class="topbar">
-      <div class="brand">Newhouse</div>
+      <div class="brand"></div>
 
       <div class="toggle" onclick="toggleTheme()">
         <span class="material-icons" id="themeIcon">dark_mode</span>
       </div>
     </div>
 
-    <h1>QR in Space <span style="font-weight:300"><i>beta</i></span></h1>
+    <h1>QRin.space</h1>
     <div class="tagline">
-      Generate QR codes instantly, <span class="highlight">with no ads.</span>
+      QR code generator <b>without ads</b> [Beta]
     </div>
 
     <div class="card">
@@ -191,8 +196,7 @@
     </div>
 
     <div class="footer">
-      © Newhouse 2026<br>Made in Thailand<br>
-      <b>No ads - free forever</b>
+      © Newhouse 2026<br>
     </div>
 
   </div>
@@ -253,6 +257,8 @@
         icon.textContent = "dark_mode";
       }
     }
+
+    toggleTheme();
   </script>
 
 </body>
