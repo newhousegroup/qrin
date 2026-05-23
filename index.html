@@ -16,9 +16,9 @@
 
   <!--counting-->
   <script>
-    fetch('https://countapi.mileshilliard.com/api/v1/hit/qrinspace')
-      .then(response => response.json())
-      .then(data => document.getElementById("counter").textContent = data.value);
+    fetch('https://countapi.mileshilliard.com/api/v1/hit/qrinspace');
+     // .then(response => response.json())
+     // .then(data => document.getElementById("counter").textContent = data.value);
   </script>
 
   <style>
@@ -203,7 +203,7 @@
     </div>
 
     <div class="footer">
-      <b>© Newhouse 2026</b> • <span id="counter">...</span> QR codes made with us
+      <b>© Newhouse 2026</b><!-- • <span id="counter">...</span> QR codes made with us-->
     </div>
 
   </div>
