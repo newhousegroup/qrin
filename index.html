@@ -215,6 +215,10 @@
       "com","org","net","io","dev","co","gov","edu","th"
     ];
 
+    function addCount() {
+      fetch('https://countapi.mileshilliard.com/api/v1/hit/qrinspace');
+    }
+
     function normalizeInput(text) {
       if (/^https?:\/\//i.test(text)) return text;
 
@@ -243,6 +247,8 @@
         container.appendChild(canvas);
         currentCanvas = canvas;
       });
+
+      addCount();
     }
 
     function downloadQR() {
