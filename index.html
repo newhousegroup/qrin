@@ -19,8 +19,8 @@
     fetch('https://countapi.mileshilliard.com/api/v1/hit/qrinspace')
     .then(response => response.json())
     .then(data => {
-      const rnd = Math.floor(Math.random() * 50) + 1; 
-      const cnt = data.value*50 + rnd;
+      const rnd = Math.floor(Math.random() * 20) + 1; 
+      const cnt = data.value*20 + rnd;
       document.getElementById("counter").textContent = cnt.toLocaleString("en-US");
     });
   </script>
