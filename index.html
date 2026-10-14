@@ -21,7 +21,7 @@
     .then(data => {
       const rnd = Math.floor(Math.random() * 1000) + 1; 
       const cnt = data.value*1000 + rnd;
-      document.getElementById("counter").textContent = cnt;
+      document.getElementById("counter").textContent = cnt.toLocaleString("en-US");
     });
   </script>
 
