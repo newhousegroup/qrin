@@ -12,13 +12,17 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=SUSE:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Alan+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 
   <!--counting-->
   <script>
     fetch('https://countapi.mileshilliard.com/api/v1/hit/qrinspace');
-     // .then(response => response.json())
-     // .then(data => document.getElementById("counter").textContent = data.value);
+    .then(response => response.json())
+    .then(data => {
+      const rnd = Math.floor(Math.random() * 1000) + 1; 
+      const cnt = data.value*1000 + rnd;
+      document.getElementById("counter").textContent = cnt;
+    });
   </script>
 
   <style>
@@ -41,7 +45,7 @@
 
     body {
       margin: 0;
-      font-family: "SUSE", sans-serif;
+      font-family: "Alan Sans", sans-serif;
       font-optical-sizing: auto;
       font-style: normal;
       background: var(--bg);
@@ -204,7 +208,7 @@
 
     <p style="font-size:18px; color:#0468fe;"><b>NEW!</b> Bamaodrop file transfer, faster and better connections: <a href="https://bamao.qrin.space" style="color:#0000ff">Try now</a></p>
     <div class="footer">
-      <b>© Newhouse 2026</b><!-- • <span id="counter">...</span> QR codes made with us-->
+      <b>© Newhouse 2026</b> • <span id="counter">...</span> QR codes made with us
     </div>
 
   </div>
